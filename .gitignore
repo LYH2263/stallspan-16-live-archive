@@ -6,3 +6,6 @@ frontend/dist/
 .pytest_cache/
 *.pyc
 .DS_Store
+
+# local sqlite dev db
+*.db

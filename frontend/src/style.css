@@ -146,3 +146,82 @@ th { color: var(--ss-muted); font-weight: 700; font-size: 0.78rem; }
 
 .stall-strip { display: flex; height: 56px; border: 2px solid var(--ss-curb); overflow: hidden; margin: 0.75rem 0; background: #3a3126; }
 .stall-cell { display: flex; align-items: center; justify-content: center; font-size: 0.7rem; border-right: 1px solid rgba(255,255,255,0.08); overflow: hidden; white-space: nowrap; }
+
+/* 三栏对比：左现算 / 中差值 / 右历史，两图共用 StallBand 一套坐标口径 */
+.ss-compare-grid {
+  flex: 1; min-height: 0;
+  display: grid; grid-template-columns: minmax(0, 1fr) 300px minmax(0, 1fr);
+  gap: 0.75rem; align-items: start;
+}
+.ss-col { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.ss-col-head {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-weight: 800; font-size: 0.9rem;
+}
+.ss-col-head .tag {
+  font-size: 0.68rem; font-weight: 700; padding: 0.08rem 0.4rem; border-radius: 3px;
+}
+.tag-live { background: rgba(58,122,74,0.2); color: var(--ss-ok); }
+.tag-diff { background: rgba(196,92,38,0.2); color: var(--ss-accent); }
+.tag-hist { background: rgba(92,74,50,0.22); color: var(--ss-curb); }
+
+.ss-band-compare { height: 120px; min-height: 120px; margin: 0; }
+.ss-track { position: relative; height: 100%; min-width: 100%; }
+.ss-track .ss-band-cell { position: absolute; top: 0; bottom: 0; padding: 0; }
+.ss-band-empty {
+  height: 120px; border: 2px dashed var(--ss-curb); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ss-muted); font-size: 0.82rem; background: rgba(255,255,255,0.18);
+}
+
+.ss-diff-groups { display: flex; flex-direction: column; gap: 0.5rem; }
+.ss-diff-group {
+  background: var(--ss-paper); border: 2px solid var(--ss-curb); border-radius: 4px;
+  box-shadow: 2px 2px 0 rgba(92,74,50,0.2);
+}
+.ss-diff-group h3 {
+  margin: 0; padding: 0.3rem 0.55rem; font-size: 0.76rem;
+  border-bottom: 1px solid rgba(92,74,50,0.25);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.ss-diff-group ul { margin: 0; padding: 0.2rem 0.2rem; list-style: none; max-height: 190px; overflow-y: auto; }
+.ss-diff-group li {
+  padding: 0.25rem 0.4rem; font-size: 0.74rem; border-bottom: 1px dashed rgba(92,74,50,0.2);
+}
+.ss-diff-group li:last-child { border-bottom: none; }
+.ss-diff-group .coords { color: var(--ss-muted); font-size: 0.68rem; display: block; }
+.ss-diff-empty { color: var(--ss-muted); font-size: 0.78rem; padding: 0.55rem 0.7rem; }
+.ss-diff-bar-empty {
+  border: 2px dashed var(--ss-curb); border-radius: 4px; padding: 0.9rem 0.75rem;
+  color: var(--ss-muted); font-size: 0.8rem; background: rgba(255,255,255,0.18);
+}
+
+.ss-reject-list { margin: 0; padding-left: 1rem; font-size: 0.76rem; }
+.ss-reject-list li { margin-bottom: 0.2rem; }
+.ss-side-label { font-size: 0.7rem; color: var(--ss-muted); margin: 0; }
+
+.ss-run-list { display: flex; flex-direction: column; gap: 0.3rem; max-height: 230px; overflow-y: auto; }
+.ss-run-item {
+  text-align: left; width: 100%; cursor: pointer;
+  background: var(--ss-paper); border: 2px solid var(--ss-curb); border-radius: 4px;
+  padding: 0.35rem 0.55rem; font-size: 0.76rem; color: var(--ss-ink);
+}
+.ss-run-item:hover { border-color: var(--ss-accent); }
+.ss-run-item.active { border-color: var(--ss-accent); box-shadow: inset 0 0 0 1px var(--ss-accent); background: #fbf3e2; }
+.ss-run-item .meta { display: block; color: var(--ss-muted); font-size: 0.68rem; }
+
+.ss-toolbar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.ss-toolbar label { font-size: 0.78rem; color: var(--ss-curb); font-weight: 700; }
+.ss-toolbar input[type=number] {
+  width: 84px; padding: 0.28rem 0.4rem; font-size: 0.82rem;
+  border: 2px solid var(--ss-curb); border-radius: 3px; background: var(--ss-paper);
+}
+.ss-mini-btn {
+  background: var(--ss-paper); border: 2px solid var(--ss-curb); border-radius: 3px;
+  padding: 0.22rem 0.6rem; font-size: 0.76rem; font-weight: 700; cursor: pointer; color: var(--ss-ink);
+}
+.ss-mini-btn:hover { border-color: var(--ss-accent); color: var(--ss-accent); }
+.ss-width-editor { margin-top: 0.3rem; }
+.ss-width-editor table { font-size: 0.74rem; }
+.ss-width-editor input[type=number] { width: 70px; padding: 0.15rem 0.3rem; }
+.ss-err { color: var(--ss-bad); font-size: 0.76rem; font-weight: 700; }
